@@ -1,5 +1,5 @@
 from django.db import models
-from publico.models.py import Persona
+from publico.models import Persona
 
 
 class OfertaEmpleo(models.Model):
@@ -22,15 +22,16 @@ class PersonaOfertaEmpleo(models.Model):
 
 class TipoEntrevista (models.Model):
 	idTipo= models.AutoField(primary_key=True)
-	nombre= models.CharField(max_length=50,null=False)
+	nombre= models.CharField(max_length=50, null=False)
 	def __unicode__(self):
 		return  self.nombre
 
 class Entrevista(models.Model):
 	idEntrevista= models.AutoField(primary_key=True)
 	puntaje= models.FloatField(null=False)
-	observacion= models.CharField(max_length=100,null=False)
+	observacion= models.CharField(max_length=100, null=False)
 	tipo= models.ForeignKey(TipoEntrevista)
+	persona=models.ForeignKey(PersonaOfertaEmpleo)
 	def __unicode__(self):
 		return  self.tipo
 
